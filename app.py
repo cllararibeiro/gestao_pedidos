@@ -22,3 +22,22 @@ def cadastro():
 @app.route('/home')
 def home():
     return render_template('home.html')
+    
+@app.route('/cadastrar_clientes')
+def cadastrar_clientes():
+    return render_template('cadastrar_clientes.html')
+
+@app.route('/cadastrar_pedidos')
+def cadastrar_pedidos():
+    return render_template('cadastrar_pedidos.html')
+
+@app.route('/cadastrar_produtos')
+def cadastrar_produtos():
+    return render_template('cadastrar_produtos.html')
+
+@app.route('/relatorios')
+def relatorios():
+    return render_template('relatorios.html')
+
+
+

@@ -38,24 +38,7 @@
     background-color: white;
 }
 
-.card {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    height: 200px;
-    width: 200px;
-    gap: 1rem;
-    border: 1px solid rgb(238, 236, 236);
-    border-radius: 0.5rem;
-    background-color: black;
-    color: white;
-    font-size: 15px;
-}
 
-.card a{
-    text-decoration: none;
-    color: white;
-}
 
 .rodape {
     display: flex;

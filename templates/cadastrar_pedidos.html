@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='cadastrar_pedidos.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="cabeçalho">
+            <a href="{{url_for('cadastrar_clientes')}}">Clientes</a>
+            <a href="{{url_for('cadastrar_produtos')}}">Produtos</a>
+            <a href="{{url_for('cadastrar_pedidos')}}">Pedidos</a>
+            <a href="{{url_for('relatorios')}}">Relatórios</a>
+        </div>
+       
+        <div class="conteudo">
+            <h1>Cadastro de Pedidos</h1>
+            <form action="/cadastrar_pedido" method="POST">
+                <select name="cliente" required>
+                    <option value="">Selecione um Cliente</option>
+                </select>
+                <select name="produto" required>
+                    <option value="">Selecione um Produto</option>
+                </select>
+                <input type="number" name="quantidade" placeholder="Quantidade" required>
+                <input type="date" name="data_pedido" required>
+                <input type="number" name="valor_total" placeholder="Valor Total" required step="0.01" readonly>
+                <button type="submit">Cadastrar Pedido</button>
+            </form>
+        </div>
+        
+        <div class="rodape">
+            <p>Contato: arlan@gmail.com | Telefone: (00) 0000-0000</p>
+        </div>
+    </div>
+</body>
+</html>

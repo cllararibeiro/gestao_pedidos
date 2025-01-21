@@ -9,13 +9,10 @@
 <body>
     <div class="container">
         <div class="cabeçalho">
-            <h1>Sistema de Gestão de Pedidos</h1>
-            <nav>
-                <a href="/clientes">Clientes</a>
-                <a href="/produtos">Produtos</a>
-                <a href="/pedidos">Pedidos</a>
-                <a href="/relatorios">Relatórios</a>
-            </nav>
+            <a href="{{url_for('cadastrar_clientes')}}">Clientes</a>
+            <a href="{{url_for('cadastrar_produtos')}}">Produtos</a>
+            <a href="{{url_for('cadastrar_pedidos')}}">Pedidos</a>
+            <a href="{{url_for('relatorios')}}">Relatórios</a>
         </div>
        
         <div class="conteudo">
