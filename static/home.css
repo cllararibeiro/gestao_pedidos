@@ -1,50 +1,43 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-.container{
+.container {
     display: flex;
     flex-wrap: wrap;
 }
 
 .cabeçalho {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center; 
+    height: 15vh;
     width: 100%;
     height: 15vh;
     gap: 1rem; 
-    background-color: rgb(153, 153, 255);
+    background-color: black;
+    color: white;
 }
 
-.conteudo{
+.cabeçalho a{
+    text-decoration: none;
+    color: white;
+}
+
+
+.conteudo {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    height: 70vh;
-    gap: 2rem;
-    margin: 1rem;
     width: 100%;
-    height: auto;
+    height: 70vh; 
     background-color: white;
 }
 
-.rodape{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8rem;
-    width: 100%;
-    height: 15vh;
-    background-color:  rgb(153, 153, 255);
-
-}
-
-
-.card{
+.card {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -53,20 +46,23 @@
     gap: 1rem;
     border: 1px solid rgb(238, 236, 236);
     border-radius: 0.5rem;
-    background-color: rgb(179, 179, 245);
+    background-color: black;
     color: white;
     font-size: 15px;
 }
 
+.card a{
+    text-decoration: none;
+    color: white;
+}
 
-
-@media (max-width: 768px) {
-    .cabeca, .rodape {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .rodape {
-        height: auto; 
-    }
+.rodape {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 15vh;
+    background-color: black;
+    color: white;
 }

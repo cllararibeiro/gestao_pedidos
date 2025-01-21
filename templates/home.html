@@ -4,23 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
-    <link rel="stylesheet" href="{{url_for('static', filename='home.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
 </head>
 <body>
     <div class="container">
         <div class="cabeçalho">
-    
-            <a href="/clientes">Clientes</a>
-            <a href="/produtos">Produtos</a>
-            <a href="/pedidos">Pedidos</a>
-            <a href="/relatorios">Relatórios</a>
-
-         </div>
+            <h1>Sistema de Gestão de Pedidos</h1>
+            <nav>
+                <a href="/clientes">Clientes</a>
+                <a href="/produtos">Produtos</a>
+                <a href="/pedidos">Pedidos</a>
+                <a href="/relatorios">Relatórios</a>
+            </nav>
+        </div>
        
         <div class="conteudo">
-            <h2>Bem-vindo ao Sistema de Gestão de Pedidos</h2>
-            <p>Gerencie seus clientes, produtos e pedidos de forma eficiente.</p>
-       
             <div class="card">
                 <h3>Cadastro de Clientes</h3>
                 <p>Adicione e gerencie seus clientes facilmente.</p>
@@ -44,13 +42,11 @@
                 <p>Visualize relatórios detalhados sobre suas vendas.</p>
                 <a href="/relatorios">Acessar</a>
             </div>
-    
         </div>
         
         <div class="rodape">
             <p>Contato: arlan@gmail.com | Telefone: (00) 0000-0000</p>
         </div>
     </div>
-   
 </body>
 </html>
