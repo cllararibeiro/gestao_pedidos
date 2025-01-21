@@ -1,51 +1,6 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='home.css') }}">
-</head>
-<body>
-    <div class="container">
-        <div class="cabeçalho">
-            <a href="{{url_for('home')}}">Home</a>
-            <a href="{{url_for('cadastrar_clientes')}}">Clientes</a>
-            <a href="{{url_for('cadastrar_produtos')}}">Produtos</a>
-            <a href="{{url_for('cadastrar_pedidos')}}">Pedidos</a>
-            <a href="{{url_for('relatorios')}}">Relatórios</a>
-        </div>
-       
-        <div class="conteudo">
-            <div class="card">
-                <h3>Cadastro de Clientes</h3>
-                <p>Adicione e gerencie seus clientes facilmente.</p>
-                <button class="botao">Acessar</button>
-            </div>
-
-            <div class="card">
-                <h3>Cadastro de Produtos</h3>
-                <p>Gerencie seu estoque de produtos.</p>
-                <button class="botao">Acessar</button>
-            </div>
-
-            <div class="card">
-                <h3>Registro de Pedidos</h3>
-                <p>Registre e acompanhe os pedidos dos clientes.</p>
-                <button class="botao">Acessar</button>
-            </div>
-
-            <div class="card">
-                <h3>Relatórios Avançados</h3>
-                <p>Visualize relatórios detalhados sobre suas vendas.</p>
-                <button class="botao">Acessar</button>
-
-            </div>
-        </div>
-        
-        <div class="rodape">
-            
-        </div>
-    </div>
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+<h1 class="text-center">Bem-vindo à Gestão de Pedidos</h1>
+<p class="text-center">Escolha uma opção no menu para começar.</p>
+{% endblock %}
