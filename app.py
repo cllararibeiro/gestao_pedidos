@@ -98,6 +98,9 @@ def relatorios():
             cursor.execute(query, (nome, start_data, final_data))
             resultado = cursor.fetchall()
             cursor.close()
+        else:
+            #caso não seja nenhum desses filtros, ira aparecer esta mensagem de erro
+            flash("Este filtro nâo existe, por favor tentar outro", 'error')
 
     return render_template('relatorios.html', resultado = resultado)
 
