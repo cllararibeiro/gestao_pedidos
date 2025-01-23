@@ -48,6 +48,26 @@ def cadastrar_cliente():
 
 @app.route ('/relatorios' , methods=['GET', 'POST'])
 def relatorios():
+    if request.method == 'POST':
+        nome = request.form['nome']
+        start_data = request.form['start_data']
+        final_data = request.form['final_data']
+        valor_pedido = request.form['valor_pedido']
+        tops = request.form['tops']
+        intervalo = request.form['intervalo']
+        
+        if nome and start_data and final_data:
+            pass
+
+        if valor_pedido and start_data and final_data:
+            pass
+
+        if tops and intervalo:
+            pass
+            
+        if intervalo:
+            pass
+
     return "essa rota esta em manutenção"
 
 @app.route('/cadastrar_produto', methods=['GET', 'POST'])
