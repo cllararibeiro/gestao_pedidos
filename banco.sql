@@ -40,3 +40,9 @@ CREATE TABLE IF NOT EXISTS tb_proPed (
     FOREIGN KEY (proPed_pro_id) REFERENCES tb_produtos(pro_id)
 );
 
+CREATE TABLE IF NOT EXISTS tb_usuarios (
+    usu_id INT AUTO_INCREMENT PRIMARY KEY,
+    usu_nome VARCHAR(150) NOT NULL,
+    usu_email VARCHAR(150) NOT NULL,
+    usu_senha VARCHAR(500) NOT NULL
+);

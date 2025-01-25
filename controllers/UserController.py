@@ -42,17 +42,6 @@ def login():
     
     return render_template("login.html")
 
-
-@app.route('/listar_pedidos', methods=['GET'])
-def listar_pedidos():
-    ordem = request.args.get('ordem', 'asc')
-    query = f'SELECT * FROM tb_pedidos ORDER BY ped_data {"ASC" if ordem == "asc" else "DESC"}'
-    cursor = mysql.connection.cursor()
-    cursor.execute(query)
-    dados = cursor.fetchall()
-    cursor.close()
-    return render_template('listar_pedidos.html', dados=dados, ordem=ordem)
-
 @app.route("/logout")
 def logout():
     if current_user.is_authenticated:

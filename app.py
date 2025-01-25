@@ -1,5 +1,5 @@
 from gestao_pedidos import app
-from gestao_pedidos.controllers import UserController, ClientController, ProductController
+from gestao_pedidos.controllers import UserController, ClientController, ProductController, OrderController
 
 # @app.route ('/relatorios' , methods=['GET', 'POST'])
 # def relatorios():
@@ -58,22 +58,3 @@ from gestao_pedidos.controllers import UserController, ClientController, Product
 #             flash("Este filtro nâo existe, por favor tentar outro", 'error')
 
 #     return render_template('relatorios.html', resultado = resultado)
-
-# @app.route('/listar', methods=['GET'])
-# def listar():
-#     tipo = request.args.get('tipo', 'pedidos')  # Tipo de listagem: clientes, produtos, pedidos
-#     ordem = request.args.get('ordem', 'asc')
-
-#     # Query de listagem com ordenação
-#     query = {
-#         'clientes': f'SELECT * FROM tb_clientes ORDER BY cli_nome {"ASC" if ordem == "asc" else "DESC"}',
-#         'produtos': f'SELECT * FROM tb_produtos ORDER BY pro_nome {"ASC" if ordem == "asc" else "DESC"}',
-#         'pedidos': f'SELECT * FROM tb_pedidos ORDER BY ped_data {"ASC" if ordem == "asc" else "DESC"}'
-#     }.get(tipo, 'SELECT * FROM tb_pedidos ORDER BY ped_data ASC')
-
-#     cursor = mysql.connection.cursor()
-#     cursor.execute(query)
-#     dados = cursor.fetchall()
-#     cursor.close()
-
-#     return render_template('listar.html', dados=dados, tipo=tipo, ordem=ordem)
