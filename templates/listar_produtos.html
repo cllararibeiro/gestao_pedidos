@@ -14,7 +14,6 @@
                 <th>ID</th>
                 <th>Nome</th>
                 <th>Preço</th>
-                <th>Ações</th> <!-- Nova coluna para o botão -->
             </tr>
         </thead>
         <tbody>
@@ -23,25 +22,13 @@
                     <td>{{ produto['pro_id'] }}</td>
                     <td>{{ produto['pro_nome'] }}</td>
                     <td>{{ produto['pro_preco'] }}</td>
-                    <td>
-                        <!-- Botão de adicionar -->
-                        <form method="POST" action="{{ url_for('listar_produtos') }}">
-                            <input type="hidden" name="pro_id" value="{{ produto['pro_id'] }}">
-                            <input type="hidden" name="pro_nome" value="{{ produto['pro_nome'] }}">
-                            <input type="hidden" name="pro_preco" value="{{ produto['pro_preco'] }}">
-                            
-                            <!-- Campo de quantidade -->
-                            <label for="quantidade">Quantidade</label>
-                            <input type="number" id="quantidade" name="quantidade" value="1" min="1" required>
-                            
-                            <button type="submit" class="btn btn-success">Adicionar</button>
-                        </form>
-                        
-                    </td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
+    <div class="mt-4">
+        <a href="{{ url_for('cadastrar_pedido') }}" class="btn btn-success">Cadastrar Pedido</a>
+    </div>
 </div>
 
 {% endblock %}

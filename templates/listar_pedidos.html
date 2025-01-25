@@ -14,6 +14,8 @@
                     <th>ID</th>
                     <th>Data</th>
                     <th>Cliente</th>
+                    <th>Produtos</th>
+                    <th>Total</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,7 +23,9 @@
                 <tr>
                     <td>{{ pedido['ped_id'] }}</td>
                     <td>{{ pedido['ped_data'] }}</td>
-                    <td>{{ pedido['ped_cli_id'] }}</td>
+                    <td>{{ pedido['cli_nome'] }}</td>
+                    <td>{{ pedido['produtos'] }}</td>
+                    <td>{{ pedido['ped_total'] }}</td>
                 </tr>
                 {% endfor %}
             </tbody>

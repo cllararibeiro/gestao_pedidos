@@ -1,10 +1,11 @@
 from gestao_pedidos.database.config import mysql
 
 class Orders:
-    def __init__(self, cli_id, data, total):
+    def __init__(self, cli_id, data, total, produtos):
         self.cli_id = cli_id
         self.data = data
-        self.total = total  # Corrigido: total agora é inicializado corretamente.
+        self.total = total
+        self.produtos = produtos
 
     def save(self):
         cursor = mysql.connection.cursor()
@@ -25,6 +26,15 @@ class Orders:
             "INSERT INTO tb_pedidos (ped_data, ped_cli_id, ped_total) VALUES (%s, %s, %s)",
             (self.data, self.cli_id, self.total),
         )
+        pedido_id = cursor.lastrowid
+
+        # Inserir os produtos do pedido
+        for produto in self.produtos:
+            cursor.execute(
+                "INSERT INTO tb_proPed (proPed_ped_id, proPed_pro_id, proPed_qdproduto, proPed_subtotal) VALUES (%s, %s, %s, %s)",
+                (pedido_id, produto['pro_id'], produto['quantidade'], produto['subtotal']),
+            )
+
         mysql.connection.commit()
         cursor.close()
 
@@ -37,13 +47,24 @@ class Orders:
                 ped_id, 
                 ped_data, 
                 cli_nome, 
-                ped_total 
+                ped_total,
+                GROUP_CONCAT(pro_nome SEPARATOR ', ') AS produtos
             FROM 
-                tb_pedidos 
+                tb_pedidos
             JOIN 
                 tb_clientes 
             ON 
                 ped_cli_id = cli_id 
+            JOIN 
+                tb_proPed 
+            ON 
+                ped_id = proPed_ped_id
+            JOIN 
+                tb_produtos 
+            ON 
+                proPed_pro_id = pro_id
+            GROUP BY 
+                ped_id, ped_data, cli_nome,ped_total
             ORDER BY 
                 ped_data {"ASC" if ordem == "asc" else "DESC"}
         '''

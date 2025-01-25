@@ -24,3 +24,10 @@ class Client:
             flash("Cadastro efetuado com sucesso!", "success")
         cursor.close()
         return True
+    @staticmethod
+    def get_all_clients():
+        cursor = mysql.connection.cursor()
+        cursor.execute("SELECT cli_id, cli_nome FROM tb_clientes ORDER BY cli_nome ASC")
+        clientes = cursor.fetchall() 
+        cursor.close()
+        return clientes
