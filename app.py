@@ -1,7 +1,6 @@
 from gestao_pedidos import app
 from gestao_pedidos.controllers import UserController, ClientController, ProductController
 
-
 # @app.route ('/relatorios' , methods=['GET', 'POST'])
 # def relatorios():
 #     if request.method == 'POST':

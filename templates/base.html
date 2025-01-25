@@ -27,6 +27,7 @@
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownCadastrar">
                             <li><a class="dropdown-item" href="{{ url_for('cadastrar_cliente') }}">Cadastrar Cliente</a></li>
                             <li><a class="dropdown-item" href="{{ url_for('cadastrar_produto') }}">Cadastrar Produto</a></li>
+                            <li><a class="dropdown-item" href="#">Cadastrar Pedido</a></li>
                         </ul>
                     </li>
 
@@ -37,9 +38,9 @@
                             Listar
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdownListar">
-                            <li><a class="dropdown-item" href="#">Listar Clientes</a></li>
-                            <li><a class="dropdown-item" href="#">Listar Produtos</a></li>
-                            <li><a class="dropdown-item" href="#">Listar Pedidos</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('listar_clientes') }}">Listar Clientes</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('listar_produtos') }}">Listar Produtos</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('listar_pedidos') }}">Listar Pedidos</a></li>
                         </ul>
                     </li>
 
