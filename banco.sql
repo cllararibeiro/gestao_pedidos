@@ -40,12 +40,3 @@ CREATE TABLE IF NOT EXISTS tb_proPed (
     FOREIGN KEY (proPed_pro_id) REFERENCES tb_produtos(pro_id)
 );
 
-CREATE TABLE tb_pedidos (
-    ped_id INT AUTO_INCREMENT PRIMARY KEY,
-    ped_cli_id INT,
-    ped_data DATE,
-    ped_total DECIMAL(10,2),
-    FOREIGN KEY (ped_cli_id) REFERENCES tb_clientes(cli_id)
-);
-
-
