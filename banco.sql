@@ -2,7 +2,6 @@ CREATE DATABASE IF NOT EXISTS db_pedidos;
 
 USE db_pedidos;
 
--- Tabela de Clientes
 CREATE TABLE IF NOT EXISTS tb_clientes (
     cli_id INT AUTO_INCREMENT PRIMARY KEY,
     cli_nome VARCHAR(100) NOT NULL,
@@ -20,14 +19,16 @@ CREATE TABLE IF NOT EXISTS tb_produtos (
     pro_preco DECIMAL(10,2) NOT NULL
 );
 
+
 -- Tabela de Pedidos
 CREATE TABLE IF NOT EXISTS tb_pedidos (
     ped_id INT AUTO_INCREMENT PRIMARY KEY,
     ped_cli_id INT NOT NULL,
     ped_data DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     ped_total DECIMAL(10,2) NOT NULL,
-    FOREIGN KEY (ped_cli_id) REFERENCES tb_clientes(cli_id)
+    FOREIGN KEY (ped_cli_id) REFERENCES tb_clientes(cli_id) ON DELETE CASCADE
 );
+
 
 -- Tabela de Produtos por Pedido
 CREATE TABLE IF NOT EXISTS tb_proPed (
@@ -40,9 +41,9 @@ CREATE TABLE IF NOT EXISTS tb_proPed (
     FOREIGN KEY (proPed_pro_id) REFERENCES tb_produtos(pro_id)
 );
 
-CREATE TABLE IF NOT EXISTS tb_usuarios (
-    usu_id INT AUTO_INCREMENT PRIMARY KEY,
+CREATE TABLE IF NOT EXISTS tb_usuarios(
+	usu_id INT AUTO_INCREMENT PRIMARY KEY,
     usu_nome VARCHAR(150) NOT NULL,
     usu_email VARCHAR(150) NOT NULL,
     usu_senha VARCHAR(500) NOT NULL
-);
+)
