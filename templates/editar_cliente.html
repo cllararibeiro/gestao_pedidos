@@ -1,3 +1,24 @@
+<header>
+    <style>
+        /* Estilo para o botão com animação */
+        .btn-primary {
+            transition: all 0.3s ease;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3; /* Azul mais escuro */
+            transform: scale(1.05); /* Aumenta ligeiramente o tamanho */
+            box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary:active {
+            transform: scale(0.98); /* Ligeiro encolhimento ao clicar */
+            box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</header>
+
 {% extends "base.html" %}
 {% block title %}Editar Cliente{% endblock %}
 {% block content %}
