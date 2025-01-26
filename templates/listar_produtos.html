@@ -14,6 +14,7 @@
                 <th>ID</th>
                 <th>Nome</th>
                 <th>Preço</th>
+                <th>Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -22,6 +23,10 @@
                     <td>{{ produto['pro_id'] }}</td>
                     <td>{{ produto['pro_nome'] }}</td>
                     <td>{{ produto['pro_preco'] }}</td>
+                    <td>
+                        <a href="{{ url_for('editar_produto', pro_id=produto['pro_id']) }}" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="{{ url_for('excluir_produto', pro_id=produto['pro_id']) }}" class="btn btn-danger btn-sm" onclick="return confirmarExclusao();">Excluir</a>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
@@ -30,5 +35,11 @@
         <a href="{{ url_for('cadastrar_pedido') }}" class="btn btn-success">Cadastrar Pedido</a>
     </div>
 </div>
+
+<script>
+    function confirmarExclusao() {
+        return confirm("Tem certeza que deseja excluir este produto?");
+    }
+</script>
 
 {% endblock %}

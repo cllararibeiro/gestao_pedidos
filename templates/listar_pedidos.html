@@ -16,6 +16,7 @@
                     <th>Cliente</th>
                     <th>Produtos</th>
                     <th>Total</th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,10 +27,20 @@
                     <td>{{ pedido['cli_nome'] }}</td>
                     <td>{{ pedido['produtos'] }}</td>
                     <td>{{ pedido['ped_total'] }}</td>
+                    <td>
+                        <a href="{{ url_for('editar_pedido', ped_id=pedido['ped_id']) }}" class="btn btn-warning btn-sm">Editar</a>
+                        <a href="{{ url_for('excluir_pedido', ped_id=pedido['ped_id']) }}" class="btn btn-danger btn-sm" onclick="return confirmarExclusao();">Excluir</a>
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
+
+<script>
+    function confirmarExclusao() {
+        return confirm("Tem certeza que deseja excluir este pedido?");
+    }
+</script>
 
 {% endblock %}

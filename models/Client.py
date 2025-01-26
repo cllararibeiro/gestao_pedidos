@@ -24,6 +24,7 @@ class Client:
             flash("Cadastro efetuado com sucesso!", "success")
         cursor.close()
         return True
+
     @staticmethod
     def get_all_clients():
         cursor = mysql.connection.cursor()

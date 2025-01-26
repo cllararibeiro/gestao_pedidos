@@ -4,50 +4,53 @@
 
 {% block content %}
 <div class="container">
-    <h1 class="my-4">Relatórios</h1>
+    <h1 class="my-4">Relatórios Avançados</h1>
     <form method="POST">
         <div class="row">
-            <!-- Nome do cliente -->
-            <div class="col-md-6 mb-3">
-                <label for="nome" class="form-label">Nome do Cliente</label>
-                <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome">
+            <!-- Botão: Total de vendas por cliente -->
+            <div class="col-md-3 mb-3">
+                <button 
+                    type="submit" 
+                    class="btn btn-primary w-100" 
+                    name="filtro" 
+                    value="total_vendas_cliente">
+                    Total de Vendas por Cliente
+                </button>
             </div>
 
-            <!-- Data inicial -->
+            <!-- Botão: Clientes com compras acima de R$1000 -->
             <div class="col-md-3 mb-3">
-                <label for="start_data" class="form-label">Data Inicial</label>
-                <input type="date" class="form-control" id="start_data" name="start_data">
+                <button 
+                    type="submit" 
+                    class="btn btn-success w-100" 
+                    name="filtro" 
+                    value="clientes_acima_1000">
+                    Clientes com Compras > R$1000
+                </button>
             </div>
 
-            <!-- Data final -->
+            <!-- Botão: Top 10 produtos mais vendidos -->
             <div class="col-md-3 mb-3">
-                <label for="final_data" class="form-label">Data Final</label>
-                <input type="date" class="form-control" id="final_data" name="final_data">
+                <button 
+                    type="submit" 
+                    class="btn btn-info w-100" 
+                    name="filtro" 
+                    value="top_produtos">
+                    Top 10 Produtos Mais Vendidos
+                </button>
+            </div>
+
+            <!-- Botão: Produtos não vendidos -->
+            <div class="col-md-3 mb-3">
+                <button 
+                    type="submit" 
+                    class="btn btn-danger w-100" 
+                    name="filtro" 
+                    value="produtos_nao_vendidos">
+                    Produtos Não Vendidos
+                </button>
             </div>
         </div>
-
-        <div class="row">
-            <!-- Valor mínimo do pedido -->
-            <div class="col-md-6 mb-3">
-                <label for="valor_pedido" class="form-label">Valor Mínimo do Pedido</label>
-                <input type="number" class="form-control" id="valor_pedido" name="valor_pedido" placeholder="Ex.: 500" step="0.01">
-            </div>
-
-            <!-- Top N produtos -->
-            <div class="col-md-3 mb-3">
-                <label for="tops" class="form-label">Top N Produtos</label>
-                <input type="number" class="form-control" id="tops" name="tops" placeholder="Ex.: 10">
-            </div>
-
-            <!-- Intervalo de dias -->
-            <div class="col-md-3 mb-3">
-                <label for="intervalo" class="form-label">Intervalo de Dias</label>
-                <input type="number" class="form-control" id="intervalo" name="intervalo" placeholder="Ex.: 30">
-            </div>
-        </div>
-
-        <!-- Botão de envio -->
-        <button type="submit" class="btn btn-primary">Gerar Relatório</button>
     </form>
 
     <!-- Mensagem de feedback -->
@@ -67,19 +70,29 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th>ID do Pedido</th>
-                <th>Nome do Cliente</th>
-                <th>Data do Pedido</th>
-                <th>Total do Pedido</th>
+                {% if resultado[0].get('total_vendas') %}
+                    <th>Nome do Cliente</th>
+                    <th>Total de Vendas</th>
+                {% elif resultado[0].get('qtd_total') %}
+                    <th>Produto</th>
+                    <th>Quantidade Vendida</th>
+                {% else %}
+                    <th>Produto</th>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
             {% for linha in resultado %}
             <tr>
-                <td>{{ linha['ped_id'] }}</td>
-                <td>{{ linha['cli_nome'] }}</td>
-                <td>{{ linha['ped_data'] }}</td>
-                <td>R$ {{ linha['ped_total'] }}</td>
+                {% if linha.get('total_vendas') %}
+                    <td>{{ linha['cli_nome'] }}</td>
+                    <td>R$ {{ linha['total_vendas'] }}</td>
+                {% elif linha.get('qtd_total') %}
+                    <td>{{ linha['pro_nome'] }}</td>
+                    <td>{{ linha['qtd_total'] }}</td>
+                {% else %}
+                    <td>{{ linha['pro_nome'] }}</td>
+                {% endif %}
             </tr>
             {% endfor %}
         </tbody>
