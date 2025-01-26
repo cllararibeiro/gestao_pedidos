@@ -25,7 +25,3 @@ def listar_clientes():
     dados = cursor.fetchall()
     cursor.close()
     return render_template('listar_clientes.html', dados=dados, ordem=ordem)
-
-
-
-

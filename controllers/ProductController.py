@@ -3,10 +3,6 @@ from gestao_pedidos.models.Products import Products
 from flask import request, redirect, url_for, render_template, session
 from gestao_pedidos.database.config import mysql
 
-
-
-
-
 @app.route('/cadastrar_produto', methods=['GET', 'POST'])
 def cadastrar_produto():
     if request.method == 'POST':

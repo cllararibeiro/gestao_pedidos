@@ -1,92 +1,89 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Relatórios</title>
-    <!--  css feito com o chat gpt por hora, por favor ruan ou ayslan mudar isso quando possivel -->
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        form {
-            margin-bottom: 20px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        table, th, td {
-            border: 1px solid black;
-        }
-        th, td {
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
-</head>
-<body>
-    <div>
-        <h1>Relatórios de Vendas</h1>
-        <form action="{{ url_for('relatorios') }}" method="post">
-            <label for="nome">Nome do cliente:</label>
-            <input type="text" name="nome">
-            <br>
-            <label for="start_data">Data inicial:</label>
-            <input type="date" name="start_data">
-            <label for="final_data">Data final:</label>
-            <input type="date" name="final_data">
-            <br>
-            <label for="valor_pedido">Valor do pedido:</label>
-            <input type="text" name="valor_pedido">
-            <br>
-            <label for="tops">Selecione os mais vendidos:</label>
-            <select name="tops" id="tops">
-                <option value="3">Top 3</option>
-                <option value="10">Top 10</option>
-                <option value="20">Top 20</option>
-            </select>
-            <label for="intervalo">Intervalo de tempo:</label>
-            <select name="intervalo" id="intervalo">
-                <option value="7">7 dias</option>
-                <option value="30">30 dias</option>
-                <option value="60">60 dias</option>
-                <option value="90">90 dias</option>
-            </select>
-            <br><br>
-            <input type="submit" value="Gerar Relatório">
-        </form>
-    </div>
+{% extends "base.html" %}
 
-    <div>
-        <h2>Resultados</h2>
-        {% if resultado %}
-            <table>
-                <thead>
-                    <tr>
-                        {% for column in resultado[0].keys() %}
-                            <th>{{ column }}</th>
-                        {% endfor %}
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for row in resultado %}
-                        <tr>
-                            {% for value in row.values() %}
-                                <td>{{ value }}</td>
-                            {% endfor %}
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        {% else %}
-            <p>Nenhum resultado encontrado.</p>
+{% block title %}Relatórios{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="my-4">Relatórios</h1>
+    <form method="POST">
+        <div class="row">
+            <!-- Nome do cliente -->
+            <div class="col-md-6 mb-3">
+                <label for="nome" class="form-label">Nome do Cliente</label>
+                <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite o nome">
+            </div>
+
+            <!-- Data inicial -->
+            <div class="col-md-3 mb-3">
+                <label for="start_data" class="form-label">Data Inicial</label>
+                <input type="date" class="form-control" id="start_data" name="start_data">
+            </div>
+
+            <!-- Data final -->
+            <div class="col-md-3 mb-3">
+                <label for="final_data" class="form-label">Data Final</label>
+                <input type="date" class="form-control" id="final_data" name="final_data">
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Valor mínimo do pedido -->
+            <div class="col-md-6 mb-3">
+                <label for="valor_pedido" class="form-label">Valor Mínimo do Pedido</label>
+                <input type="number" class="form-control" id="valor_pedido" name="valor_pedido" placeholder="Ex.: 500" step="0.01">
+            </div>
+
+            <!-- Top N produtos -->
+            <div class="col-md-3 mb-3">
+                <label for="tops" class="form-label">Top N Produtos</label>
+                <input type="number" class="form-control" id="tops" name="tops" placeholder="Ex.: 10">
+            </div>
+
+            <!-- Intervalo de dias -->
+            <div class="col-md-3 mb-3">
+                <label for="intervalo" class="form-label">Intervalo de Dias</label>
+                <input type="number" class="form-control" id="intervalo" name="intervalo" placeholder="Ex.: 30">
+            </div>
+        </div>
+
+        <!-- Botão de envio -->
+        <button type="submit" class="btn btn-primary">Gerar Relatório</button>
+    </form>
+
+    <!-- Mensagem de feedback -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="mt-4">
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            </div>
         {% endif %}
-    </div>
-</body>
-</html>
+    {% endwith %}
+
+    <!-- Resultados -->
+    {% if resultado %}
+    <h2 class="my-4">Resultados</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID do Pedido</th>
+                <th>Nome do Cliente</th>
+                <th>Data do Pedido</th>
+                <th>Total do Pedido</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for linha in resultado %}
+            <tr>
+                <td>{{ linha['ped_id'] }}</td>
+                <td>{{ linha['cli_nome'] }}</td>
+                <td>{{ linha['ped_data'] }}</td>
+                <td>R$ {{ linha['ped_total'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</div>
+{% endblock %}
