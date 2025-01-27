@@ -2,13 +2,14 @@ from gestao_pedidos import app
 from gestao_pedidos.database.config import mysql
 from gestao_pedidos.models.Client import Client
 from flask import request, render_template, redirect, url_for, flash
-from flask_login import login_required
+from flask_login import login_required,current_user
 
 
 
 @app.route('/cadastrar_cliente', methods=['GET', 'POST'])
-@login_required
 def cadastrar_cliente():
+    if not current_user.is_authenticated:
+        return redirect(url_for('register'))
     if request.method == 'POST':
         nome = request.form['nome']
         email = request.form['email']
@@ -23,8 +24,9 @@ def cadastrar_cliente():
 
 
 @app.route('/listar_clientes', methods=['GET'])
-@login_required
 def listar_clientes():
+    if not current_user.is_authenticated:
+        return redirect(url_for('register'))
     ordem = request.args.get('ordem', 'asc')
     query = f'SELECT * FROM tb_clientes ORDER BY cli_nome {"ASC" if ordem == "asc" else "DESC"}'
     cursor = mysql.connection.cursor()
@@ -35,9 +37,10 @@ def listar_clientes():
 
 
 @app.route('/editar_cliente/<int:cli_id>', methods=['GET', 'POST'])
-@login_required
 def editar_cliente(cli_id):
     cursor = mysql.connection.cursor()
+    if not current_user.is_authenticated:
+        return redirect(url_for('register'))
     if request.method == 'POST':
         nome = request.form['nome']
         email = request.form['email']
@@ -60,7 +63,6 @@ def editar_cliente(cli_id):
 
 
 @app.route('/excluir_cliente/<int:cli_id>', methods=['GET', 'POST'])
-@login_required
 def excluir_cliente(cli_id):
     cursor = mysql.connection.cursor()
     

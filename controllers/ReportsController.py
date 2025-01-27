@@ -1,14 +1,15 @@
 from gestao_pedidos import app
 from gestao_pedidos.database.config import mysql
-from flask import render_template, request, flash
-from flask_login import login_required
+from flask import render_template, request, flash,redirect,url_for
+from flask_login import login_required,current_user
 
 
 
 
 @app.route('/relatorios', methods=['GET', 'POST'])
-@login_required
 def relatorios():
+    if not current_user.is_authenticated:
+        return redirect(url_for('register'))
     resultado = None
     cursor = mysql.connection.cursor()
 

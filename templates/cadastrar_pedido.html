@@ -1,31 +1,85 @@
 <header>
     <style>
-        #form-container {
-            border: 1px solid black;
-            border-radius: 5px;
-            width: 100%;
-            max-width: 800px;
-            padding: 20px;
-            margin: 0 auto;
+        /* Estilo Geral */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
         }
-        #botaol {
-            background-color: blue;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            transition: background-color 0.5s ease
-            }
-        #centerh{
+
+        /* Título Centralizado */
+        #centerh {
             display: flex;
             align-items: center;
             justify-content: center;
+            font-weight: bold;
+            font-size: 2rem;
+            color: #0056b3;
         }
 
+        /* Contêiner do Formulário */
+        #form-container {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 800px;
+            padding: 30px;
+            margin: 20px auto;
+            background-color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
 
-botao1{
-background-color: darkblue;
-}
+        /* Campos do Formulário */
+        .form-group label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-control {
+            border: 1px solid #ced4da;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: #0056b3;
+            box-shadow: 0 0 5px rgba(0, 86, 179, 0.5);
+        }
+
+        textarea.form-control {
+            resize: none;
+        }
+
+        /* Botão Principal */
+        #botao1 {
+            background-color: #0056b3;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        #botao1:hover {
+            background-color: #004494;
+            transform: scale(1.02);
+            cursor: pointer;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            #form-container {
+                padding: 20px;
+            }
+
+            #centerh {
+                font-size: 1.5rem;
+            }
+        }
     </style>
 </header>
 {% extends "base.html" %}
